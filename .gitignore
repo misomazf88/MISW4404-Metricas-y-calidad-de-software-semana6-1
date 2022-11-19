@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+# git files
+*.git
+*.gitignore
+
 # Log file
 *.log
 
