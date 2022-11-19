@@ -2,7 +2,9 @@ name: SonarCloud
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     runs-on: ubuntu-16.04
