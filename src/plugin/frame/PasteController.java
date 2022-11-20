@@ -4,13 +4,11 @@ import java.awt.event.*;
 
 import gui.*;
 import ij.*;
-import plugin.*;
 import process.*;
 
 /** Implements ImageJ's Paste Control window. */
-public class PasteController extends PlugInFrame implements PlugIn, ItemListener {
+public class PasteController extends PlugInFrame implements ItemListener {
 
-	private Panel panel;
 	private Choice pasteMode;
 	private static Frame instance;
 	
@@ -82,5 +80,4 @@ public class PasteController extends PlugInFrame implements PlugIn, ItemListener
 		super.close();
 		instance = null;
 	}
-	
 }

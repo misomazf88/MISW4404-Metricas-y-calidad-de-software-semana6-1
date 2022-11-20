@@ -1,11 +1,14 @@
 package process;
-import ij.*;
-import measure.*;
 import plugin.filter.Analyzer;
 
 import java.awt.*;
 
-import gui.*;
+import gui.Roi;
+import ij.IJ;
+import ij.ImagePlus;
+import ij.ImageStack;
+import measure.Calibration;
+
 
 /** Statistics, including the histogram, of a stack. */
 public class StackStatistics extends ImageStatistics {
