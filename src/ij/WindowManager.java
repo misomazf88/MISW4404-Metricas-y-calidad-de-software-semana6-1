@@ -1,15 +1,17 @@
 package ij;
-import ij.plugin.Converter;
-import ij.plugin.frame.Recorder;
-import ij.plugin.frame.Editor; 
-import ij.text.TextWindow;
-import ij.plugin.frame.PlugInFrame;
-import ij.plugin.frame.Commands;
-import ij.util.Tools;
-import ij.macro.Interpreter;
+import macro.Interpreter;
+import plugin.Converter;
+import plugin.frame.Commands;
+import plugin.frame.Editor;
+import plugin.frame.PlugInFrame;
+import plugin.frame.Recorder;
+import text.TextWindow;
+import util.Tools;
+
 import java.awt.*;
 import java.util.*;
-import ij.gui.*;
+
+import gui.*;
 
 /** This class consists of static methods used to manage ImageJ's windows. */
 public class WindowManager {
@@ -144,7 +146,7 @@ public class WindowManager {
 	}
 
 	/** Returns the Window containing the active table, or null.
-	 * @see ij.measure.ResultsTable#getActiveTable
+	 * @see measure.ResultsTable#getActiveTable
 	*/
 	public static Window getActiveTable() {
 		return frontTable;

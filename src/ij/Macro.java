@@ -1,14 +1,17 @@
 package ij;
-import ij.process.*;
-import ij.gui.*;
-import ij.io.*;
-import ij.measure.*;
-import ij.plugin.filter.*;
-import ij.macro.Interpreter;
+import io.*;
+import macro.Interpreter;
+import measure.*;
+import plugin.filter.*;
+import process.*;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.Locale;
+
+import gui.*;
+
 import java.util.Hashtable;
 
 /** The class contains static methods that perform macro operations. */
@@ -80,8 +83,8 @@ public class Macro {
 	/** If a command started using run(name, options) is running,
 		and the current thread is the same thread,
 		returns the options string, otherwise, returns null.
-		@see ij.gui.GenericDialog
-		@see ij.io.OpenDialog
+		@see gui.GenericDialog
+		@see io.OpenDialog
 	*/
 	public static String getOptions() {
 		String threadName = Thread.currentThread().getName();

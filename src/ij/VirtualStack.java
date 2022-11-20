@@ -1,13 +1,15 @@
 package ij;
-import ij.process.*;
-import ij.io.*;
-import ij.gui.ImageCanvas;
-import ij.util.Tools;
-import ij.plugin.FolderOpener;
+import io.*;
+import plugin.FolderOpener;
+import process.*;
+import util.Tools;
+
 import java.io.*;
 import java.awt.*;
 import java.awt.image.ColorModel;
 import java.util.Properties;
+
+import gui.ImageCanvas;
 
 /** This class represents an array of disk-resident images. */
 public class VirtualStack extends ImageStack {

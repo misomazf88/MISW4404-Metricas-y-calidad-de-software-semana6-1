@@ -1,7 +1,8 @@
 package ij;
 import java.awt.*;
 import java.awt.image.*;
-import ij.process.*;
+
+import process.*;
 
 /** This class represents a color look-up table. */
 public class LookUpTable extends Object {
@@ -62,7 +63,7 @@ public class LookUpTable extends Object {
 	}
 
 	/** Returns <code>true</code> if this is a 256 entry grayscale LUT.
-		@see ij.process.ImageProcessor#isColorLut
+		@see process.ImageProcessor#isColorLut
 	*/
 	public boolean isGrayscale() {
 		boolean isGray = true;

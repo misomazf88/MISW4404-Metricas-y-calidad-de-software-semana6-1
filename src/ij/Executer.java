@@ -1,11 +1,12 @@
 package ij;
-import ij.util.Tools;
-import ij.text.TextWindow;
-import ij.plugin.MacroInstaller;
-import ij.plugin.Duplicator;
-import ij.plugin.frame.Recorder;
-import ij.plugin.frame.Editor;
-import ij.io.OpenDialog;
+import io.OpenDialog;
+import plugin.Duplicator;
+import plugin.MacroInstaller;
+import plugin.frame.Editor;
+import plugin.frame.Recorder;
+import text.TextWindow;
+import util.Tools;
+
 import java.io.*;
 import java.util.*;
 import java.awt.event.KeyEvent;

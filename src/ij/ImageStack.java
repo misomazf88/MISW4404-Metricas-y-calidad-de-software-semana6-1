@@ -1,7 +1,8 @@
 package ij;
 import java.awt.*;
 import java.awt.image.*;
-import ij.process.*;
+
+import process.*;
 
 /**
 This class represents an expandable array of images.

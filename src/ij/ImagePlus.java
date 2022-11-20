@@ -3,16 +3,16 @@ import java.awt.*;
 import java.awt.image.*;
 import java.net.URL;
 import java.util.*;
-import ij.process.*;
-import ij.io.*;
-import ij.gui.*;
 
-import ij.measure.*;
-import ij.plugin.filter.Analyzer;
-import ij.util.*;
-import ij.macro.Interpreter;
-import ij.plugin.*;
-import ij.plugin.frame.*;
+import gui.*;
+import io.*;
+import macro.Interpreter;
+import measure.*;
+import plugin.*;
+import plugin.filter.Analyzer;
+import plugin.frame.*;
+import process.*;
+import util.*;
 
 
 /**
@@ -21,10 +21,10 @@ It also includes metadata (spatial calibration and possibly the directory/file w
 it was read from). The ImageProcessor contains the pixel data (8-bit, 16-bit, float or RGB)
 of the 2D image and some basic methods to manipulate it. An ImageStack is essentually
 a list ImageProcessors of same type and size.
-@see ij.process.ImageProcessor
+@see process.ImageProcessor
 @see ij.ImageStack
-@see ij.gui.ImageWindow
-@see ij.gui.ImageCanvas
+@see gui.ImageWindow
+@see gui.ImageCanvas
 */
 
 public class ImagePlus implements ImageObserver, Measurements, Cloneable {
@@ -593,7 +593,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	}
 	
 	/** Returns a copy of this image as an 8-bit or RGB BufferedImage.
-	 * @see ij.process.ShortProcessor#get16BitBufferedImage
+	 * @see process.ShortProcessor#get16BitBufferedImage
 	 */
 	public BufferedImage getBufferedImage() {
 		if (isComposite())
@@ -1017,7 +1017,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	 * as this image. Creates an ROI mask If the image has both
 	 * both an ROI and an overlay. Set the threshold of the mask to 255.
 	 * @see #createThresholdMask
-	 * @see ij.gui.Roi#getMask
+	 * @see gui.Roi#getMask
 	*/
 	public ByteProcessor createRoiMask() {
 		Roi roi2 = getRoi();
@@ -1051,8 +1051,8 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	 * (foreground=255, background=0)
 	 * that has the same dimensions as this image.
 	 * The threshold of the mask is set to 255.
-	 * @see ij.plugin.Thresholder#createMask
-	 * @see ij.process.ImageProcessor#createMask
+	 * @see plugin.Thresholder#createMask
+	 * @see process.ImageProcessor#createMask
 	*/
 	public ByteProcessor createThresholdMask() {
 		ByteProcessor mask = Thresholder.createMask(this);
@@ -1072,10 +1072,10 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
          IJ.log("Mean: "+stats.mean);
          IJ.log("Max: "+stats.max);
 		</pre>
-		@return an {@link ij.process.ImageStatistics} object
+		@return an {@link process.ImageStatistics} object
 		@see #getAllStatistics
 		@see #getRawStatistics
-		@see ij.process.ImageProcessor#getStats
+		@see process.ImageProcessor#getStats
 		*/
 	public ImageStatistics getStatistics() {
 		return getStatistics(AREA+MEAN+STD_DEV+MODE+MIN_MAX+RECT);
@@ -1084,9 +1084,9 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	/** This method returns complete calibrated statistics for this
 	 * image or ROI (with "Limit to threshold"), but it is up to 70 times
 	 * slower than getStatistics().
-	 * @return an {@link ij.process.ImageStatistics} object
+	 * @return an {@link process.ImageStatistics} object
 	 * @see #getStatistics
-	 * @see ij.process.ImageProcessor#getStatistics
+	 * @see process.ImageProcessor#getStatistics
 	*/
 	public ImageStatistics getAllStatistics() {
 		return getStatistics(ALL_STATS+LIMIT);
@@ -1104,7 +1104,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 
 	/** Returns an ImageStatistics object generated using the
 		specified measurement options.
-		@see ij.measure.Measurements
+		@see measure.Measurements
 	*/
 	public ImageStatistics getStatistics(int mOptions) {
 		return getStatistics(mOptions, 256, 0.0, 0.0);
@@ -2341,7 +2341,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
     /** Returns a FileInfo object containing information, including the
 		pixel array, needed to save this image. Use getOriginalFileInfo()
 		to get a copy of the FileInfo object used to open the image.
-		@see ij.io.FileInfo
+		@see io.FileInfo
 		@see #getOriginalFileInfo
 		@see #setFileInfo
 	*/
@@ -2423,7 +2423,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 
     /** Returns the FileInfo object that was used to open this image.
     	Returns null for images created using the File/New command.
-		@see ij.io.FileInfo
+		@see io.FileInfo
 		@see #getFileInfo
 	*/
     public FileInfo getOriginalFileInfo() {
@@ -2484,7 +2484,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 
 	/** Returns a copy of this image or stack.
 	* @see #crop
-	* @see ij.plugin.Duplicator#run
+	* @see plugin.Duplicator#run
 	*/
 	public ImagePlus duplicate() {
 		Roi roi = getRoi();
@@ -2512,7 +2512,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 
 	/** Returns a copy this image or stack slice, cropped if there is an ROI.
 	 * @see #duplicate
-	 * @see ij.plugin.Duplicator#crop
+	 * @see plugin.Duplicator#crop
 	*/
 	public ImagePlus crop() {
 		return (new Duplicator()).crop(this);
@@ -2522,7 +2522,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	 * can be "stack", "slice", "whole-slice" or a range (e.g., "20-30").
 	 * @see #duplicate
 	 * @see #crop
-	 * @see ij.plugin.Duplicator#crop
+	 * @see plugin.Duplicator#crop
 	*/
 	public ImagePlus crop(String options) {
 		int stackSize = getStackSize();
@@ -2556,7 +2556,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	/** Returns an array of cropped images based on the provided
 	 * list of rois. 'options' applies with stacks and can be "stack",
 	* "slice" or a range (e.g., "20-30").
-	 * @see #crop(ij.gui.Roi[])
+	 * @see #crop(gui.Roi[])
 	*/
 	public ImagePlus[] crop(Roi[] rois, String options) {
 		int nRois = rois.length; 
@@ -3299,7 +3299,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	}
 
 	/** Assigns a LUT (lookup table) to this image.
-	 * @see ij.io.Opener#openLut
+	 * @see io.Opener#openLut
 	*/
 	public void setLut(LUT lut) {
 		ImageProcessor ip2 = getProcessor();
@@ -3310,11 +3310,11 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	}
 
 	/** Installs a list of ROIs that will be drawn on this image as a non-destructive overlay.
-	 * @see ij.gui.Roi#setStrokeColor
-	 * @see ij.gui.Roi#setStrokeWidth
-	 * @see ij.gui.Roi#setFillColor
-	 * @see ij.gui.Roi#setLocation
-	 * @see ij.gui.Roi#setNonScalable
+	 * @see gui.Roi#setStrokeColor
+	 * @see gui.Roi#setStrokeWidth
+	 * @see gui.Roi#setFillColor
+	 * @see gui.Roi#setLocation
+	 * @see gui.Roi#setNonScalable
 	 */
 	public void setOverlay(Overlay overlay) {
 		this.overlay = overlay;
@@ -3326,9 +3326,9 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 
 	/** Creates an Overlay from the specified Shape, Color
 	 * and BasicStroke, and assigns it to this image.
-	 * @see #setOverlay(ij.gui.Overlay)
-	 * @see ij.gui.Roi#setStrokeColor
-	 * @see ij.gui.Roi#setStrokeWidth
+	 * @see #setOverlay(gui.Overlay)
+	 * @see gui.Roi#setStrokeColor
+	 * @see gui.Roi#setStrokeWidth
 	 */
 	public void setOverlay(Shape shape, Color color, BasicStroke stroke) {
 		if (shape==null)
@@ -3340,7 +3340,7 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
 	}
 
 	/** Creates an Overlay from the specified ROI, and assigns it to this image.
-	 * @see #setOverlay(ij.gui.Overlay)
+	 * @see #setOverlay(gui.Overlay)
 	 */
 	public void setOverlay(Roi roi, Color strokeColor, int strokeWidth, Color fillColor) {
 		roi.setStrokeColor(strokeColor);

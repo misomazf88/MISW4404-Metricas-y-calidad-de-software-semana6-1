@@ -1,10 +1,9 @@
 package ij;
-import ij.process.*;
-import ij.util.*;
-import ij.gui.ImageWindow;
-import ij.plugin.MacroInstaller;
-import ij.gui.Toolbar;
-import ij.macro.Interpreter;
+import macro.Interpreter;
+import plugin.MacroInstaller;
+import process.*;
+import util.*;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
@@ -13,6 +12,9 @@ import java.io.*;
 import java.applet.Applet;
 import java.awt.event.*;
 import java.util.zip.*;
+
+import gui.ImageWindow;
+import gui.Toolbar;
 
 /**
 This class installs and updates ImageJ's menus. Note that menu labels,

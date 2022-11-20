@@ -1,18 +1,18 @@
 package ij;
-import ij.gui.*;
-import ij.process.*;
-import ij.text.*;
-import ij.io.*;
-import ij.plugin.*;
-import ij.plugin.filter.*;
-import ij.util.Tools;
-import ij.plugin.frame.Recorder;
-import ij.plugin.frame.ThresholdAdjuster;
-import ij.macro.Interpreter;
-import ij.macro.MacroRunner;
-import ij.measure.Calibration;
-import ij.measure.ResultsTable;
-import ij.measure.Measurements;
+import io.*;
+import macro.Interpreter;
+import macro.MacroRunner;
+import measure.Calibration;
+import measure.Measurements;
+import measure.ResultsTable;
+import plugin.*;
+import plugin.filter.*;
+import plugin.frame.Recorder;
+import plugin.frame.ThresholdAdjuster;
+import process.*;
+import text.*;
+import util.Tools;
+
 import java.awt.event.*;
 import java.text.*;
 import java.util.*;	
@@ -22,6 +22,9 @@ import java.io.*;
 import java.lang.reflect.*;
 import java.net.*;
 import javax.net.ssl.*;
+
+import gui.*;
+
 import java.security.cert.*;
 import java.security.KeyStore;
 import java.nio.ByteBuffer;
@@ -1944,7 +1947,7 @@ public class IJ {
 	 * Note that 'path' can also be a URL. Some reader plugins, including
 	 * the Bio-Formats plugin, display the image and return null.
 	 * Use IJ.open() to display a file open dialog box.
-	 * @see ij.io.Opener#openUsingBioFormats(String)
+	 * @see io.Opener#openUsingBioFormats(String)
 	*/
 	public static ImagePlus openImage(String path) {
 		macroRunning = true;
@@ -2457,7 +2460,7 @@ public class IJ {
 	
 	/** Returns, as an array of strings, a list of the LUTs in the 
 	 * Image/Lookup Tables menu.
-	 * @see ij.plugin.LutLoader#getLut
+	 * @see plugin.LutLoader#getLut
 	 * See also: Help>Examples>JavaScript/Show all LUTs
 	 * and Image/Color/Display LUTs
 	*/

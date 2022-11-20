@@ -1,14 +1,13 @@
 package ij;
-import ij.gui.*;
-import ij.process.*;
-import ij.io.*;
-import ij.plugin.*;
-import ij.plugin.filter.*;
-import ij.plugin.frame.*;
-import ij.text.*;
-import ij.macro.Interpreter;
-import ij.io.Opener;
-import ij.util.*;
+import io.*;
+import macro.Interpreter;
+import plugin.*;
+import plugin.filter.*;
+import plugin.frame.*;
+import process.*;
+import text.*;
+import util.*;
+
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
@@ -18,6 +17,8 @@ import java.awt.image.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+
+import gui.*;
 
 /**
 This frame is the main ImageJ class.
@@ -241,7 +242,7 @@ public class ImageJ extends Frame implements ActionListener,
 		configureProxy();
 		if (applet==null)
 			loadCursors();
-		(new ij.macro.StartupRunner()).run(batchMode); // run RunAtStartup and AutoRun macros
+		(new macro.StartupRunner()).run(batchMode); // run RunAtStartup and AutoRun macros
 		IJ.showStatus(version()+ m.getPluginCount() + " commands; " + m.getMacroCount() + str);
  	}
  	

@@ -1,11 +1,13 @@
 package ij;
-import ij.process.*;
-import ij.gui.*;
-import ij.plugin.*;
-import ij.plugin.frame.*;
-import ij.io.FileInfo;
+import io.FileInfo;
+import plugin.*;
+import plugin.frame.*;
+import process.*;
+
 import java.awt.*;
 import java.awt.image.*;
+
+import gui.*;
 
 public class CompositeImage extends ImagePlus {
 

@@ -3,9 +3,8 @@ package ij;
 import ij.IJ;
 import ij.ImageJ;
 import ij.Prefs;
-
-import ij.io.OpenDialog;
-import ij.io.Opener;
+import io.OpenDialog;
+import io.Opener;
 
 import java.io.BufferedInputStream;
 import java.io.File;
