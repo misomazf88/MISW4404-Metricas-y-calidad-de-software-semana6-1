@@ -3,6 +3,7 @@ io\ByteVector.class
 plugin\NeuQuant.class
 plugin\ColorPanel.class
 plugin\tool\OverlayBrushTool$Options.class
+gui\Draw.class
 ij\ImageListener.class
 plugin\RGBStackMerge.class
 macro\Variable.class
